@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@100..900&display=swap');
+
+@theme {
+  --font-headline: "Fraunces", serif;
+  --font-body: "Outfit", sans-serif;
+
+  --color-primary: #306486;
+  --color-primary-dim: #225879;
+  --color-primary-container: #a6d7ff;
+  --color-on-primary-container: #114c6d;
+  
+  --color-secondary: #3f6754;
+  --color-secondary-container: #c0edd4;
+  --color-on-secondary-container: #315a47;
+
+  --color-tertiary: #635f51;
+  --color-tertiary-container: #fdf6e4;
+
+  --color-background: #f8fafa;
+  --color-surface: #f8fafa;
+  --color-surface-container-low: #f0f4f4;
+  --color-surface-container: #eaefef;
+  --color-surface-container-high: #e3e9ea;
+  --color-surface-container-highest: #dde4e4;
+  --color-surface-container-lowest: #ffffff;
+
+  --color-on-surface: #2c3435;
+  --color-on-surface-variant: #596061;
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container;
+  }
+}
+
+.glass {
+  @apply bg-white/80 backdrop-blur-lg;
+}
+
+.step-gradient {
+  background: linear-gradient(180deg, transparent 0%, rgba(48, 100, 134, 0.05) 100%);
+}
