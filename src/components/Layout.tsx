@@ -53,11 +53,10 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
       <header 
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
           isScrolled 
-            ? "bg-primary-container/90 backdrop-blur-md shadow-md py-2" 
+            ? "bg-primary shadow-md py-2" 
             : "bg-transparent py-4 md:py-6"
         }`}
       >
@@ -65,13 +64,13 @@ export default function Layout({ children }: LayoutProps) {
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)}
-              className="p-2 rounded-full hover:bg-surface-container transition-colors text-primary md:hidden"
+              className={`p-2 rounded-full transition-colors md:hidden ${isScrolled ? "hover:bg-white/10 text-white" : "hover:bg-surface-container text-primary"}`}
             >
               <Menu size={24} />
             </button>
             <Link to="/" className="flex items-center gap-2 group">
-              <Logo size={isScrolled ? 40 : 48} className="text-primary group-hover:scale-110 transition-all duration-300" />
-              <span className={`font-extrabold tracking-tighter text-primary font-headline transition-all duration-300 ${isScrolled ? "text-lg md:text-xl" : "text-xl md:text-2xl"}`}>WeListen</span>
+              <Logo size={isScrolled ? 40 : 48} className={`transition-all duration-300 group-hover:scale-110 ${isScrolled ? "text-white" : "text-primary"}`} />
+              <span className={`font-extrabold tracking-tighter font-headline transition-all duration-300 ${isScrolled ? "text-lg md:text-xl text-white" : "text-xl md:text-2xl text-primary"}`}>WeListen</span>
             </Link>
           </div>
           
@@ -82,8 +81,8 @@ export default function Layout({ children }: LayoutProps) {
                 to={link.path} 
                 className={`font-medium text-sm transition-colors ${
                   location.pathname === link.path 
-                    ? "text-primary font-bold border-b-2 border-primary" 
-                    : "text-on-surface-variant hover:text-primary"
+                    ? (isScrolled ? "text-white font-bold border-b-2 border-white" : "text-primary font-bold border-b-2 border-primary")
+                    : (isScrolled ? "text-white/70 hover:text-white" : "text-on-surface-variant hover:text-primary")
                 }`}
               >
                 {link.name}
@@ -94,7 +93,11 @@ export default function Layout({ children }: LayoutProps) {
           <div className="flex items-center gap-4">
             <Link 
               to="/book" 
-              className={`hidden sm:block bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-primary-dim transition-all shadow-md hover:shadow-lg active:scale-95 ${isScrolled ? "scale-90" : "scale-100"}`}
+              className={`hidden sm:block px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95 ${
+                isScrolled 
+                  ? "bg-white text-primary hover:bg-white/90 scale-90" 
+                  : "bg-primary text-white hover:bg-primary-dim scale-100"
+              }`}
             >
               Book Now
             </Link>
